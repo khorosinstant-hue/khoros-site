@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KHOROS Tecnologia — Encontrar Psicólogo Online</title>
+  <style>
+    :root {
+      --bg-page: #f7f8fa;
+      --bg-card: #ffffff;
+      --primary: #1b365d;
+      --primary-light: #2b5085;
+      --accent: #2a7b6f;
+      --accent-hover: #216359;
+      --text-main: #1f2937;
+      --text-muted: #5b6472;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0.95rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+
+    .brand span {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-left: 0.4rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.58rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-voltar {
+      background-color: #f1f5f9;
+      color: var(--primary);
+      border-color: #cbd5e1;
+    }
+
+    .btn-voltar:hover {
+      background-color: #e2e8f0;
+    }
+
+    .btn-sistema {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-sistema:hover {
+      background-color: var(--primary-light);
+    }
+
+    .btn-paciente {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-paciente:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .sub-hero {
+      background: linear-gradient(135deg, #1f5e55 0%, #2a7b6f 100%);
+      color: #ffffff;
+      padding: 2.75rem 1.5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .sub-hero h1 {
+      font-size: 1.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sub-hero p {
+      color: #e6f4f1;
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.02rem;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.65rem;
+      color: var(--primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: #e6f4f1;
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.6rem;
+      width: fit-content;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--text-main);
+    }
+
+    .crp {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .meta {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--primary);
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .form-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .form-group {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      background-color: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .feedback-msg {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #e6f4f1;
+      color: #164e45;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .feedback-erro {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #fee2e2;
+      color: #991b1b;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .cvv-banner {
+      max-width: 680px;
+      margin: 2rem auto 0;
+      background: #fff8e6;
+      border: 1px solid #f5d076;
+      color: #78350f;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .sub-hero h1 { font-size: 1.65rem; }
+      .nav-container { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand">KHOROS <span>Tecnologia</span></a>
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-voltar">← Voltar ao início</a>
+        <a href="https://prontuario-mvp.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-sistema">Entrar no Sistema</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="sub-hero">
+    <h1>Atendimento Psicológico 100% Online</h1>
+    <p>Escolha livremente o profissional inscrito no CRP que melhor se alinha ao seu momento. Ambiente digital seguro em conformidade com a LGPD e diretrizes do CFP.</p>
+  </section>
+
+  <main class="container">
+    <div class="section-header">
+      <h2>Modelos ilustrativos de perfis na plataforma</h2>
+      <p>Exemplos demonstrativos de apresentação profissional com identificação completa e registro no CRP. A divulgação pública segue a natureza informativa prevista pelo CFP.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card">
+        <div>
+          <span class="tag">Infância e adolescência</span>
+          <h3>Beatriz Nogueira</h3>
+          <div class="crp">Psicóloga • CRP 02/334455</div>
+          <p>Atende crianças, adolescentes e orientação parental mediada por tecnologias digitais com sigilo profissional.</p>
+        </div>
+        <div>
+          <div class="meta">100% Online • Particular e convênios</div>
+          <button type="button" class="btn btn-paciente" style="width: 100%;" onclick="escolherProfissional('Beatriz Nogueira — Psicóloga (CRP 02/334455)')">
+            Solicitar contato com Beatriz
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <span class="tag">Luto e transições</span>
+          <h3>Camila Duarte</h3>
+          <div class="crp">Psicóloga • CRP 04/998877</div>
+          <p>Acompanha processos de luto, ansiedade, perdas e transições de vida em escuta psicológica ética.</p>
+        </div>
+        <div>
+          <div class="meta">100% Online • Particular e convênios</div>
+          <button type="button" class="btn btn-paciente" style="width: 100%;" onclick="escolherProfissional('Camila Duarte — Psicóloga (CRP 04/998877)')">
+            Solicitar contato com Camila
+          </button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div>
+          <span class="tag">Saúde no trabalho</span>
+          <h3>Jonas Ribeiro</h3>
+          <div class="crp">Psicólogo • CRP 08/445566</div>
+          <p>Atua com esgotamento profissional, estresse ocupacional e processos de transição de carreira.</p>
+        </div>
+        <div>
+          <div class="meta">100% Online • Particular e convênios</div>
+          <button type="button" class="btn btn-paciente" style="width: 100%;" onclick="escolherProfissional('Jonas Ribeiro — Psicólogo (CRP 08/445566)')">
+            Solicitar contato com Jonas
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Formulário Exclusivo do Paciente -->
+    <div id="area-form-paciente" class="form-card">
+      <h3 style="color: var(--accent); margin-bottom: 0.35rem;">Solicitar Contato para Atendimento Online</h3>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.5rem;">
+        Seus dados são tratados com sigilo e atenção à LGPD. Você pode informar seu nome ou um apelido neste primeiro contato.
+      </p>
+
+      <form id="form-paciente" onsubmit="enviarFormulario(event)">
+        <!-- Configuração Web3Forms -->
+        <input type="hidden" name="access_key" value="b98118b1-7c02-4f13-a877-e5b1a634410e">
+        <input type="hidden" name="subject" value="[KHOROS] Nova Solicitação de Paciente">
+        <input type="hidden" name="from_name" value="Site KHOROS Tecnologia">
+        <input type="checkbox" name="botcheck" style="display: none;">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pac-nome">Como gostaria de ser chamado(a)? *</label>
+            <input type="text" id="pac-nome" name="Nome_ou_Apelido" placeholder="Nome ou Apelido" required>
+          </div>
+          <div class="form-group">
+            <label for="pac-contato">WhatsApp ou E-mail para retorno *</label>
+            <input type="text" id="pac-contato" name="Contato_Retorno" placeholder="(00) 00000-0000" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="profissional-escolhido">Profissional de preferência</label>
+            <select id="profissional-escolhido" name="Profissional_Preferencia">
+              <option value="Indicação da plataforma">Quero orientação para escolher</option>
+              <option value="Beatriz Nogueira — Psicóloga (CRP 02/334455)">Beatriz Nogueira — Infância e adolescência</option>
+              <option value="Camila Duarte — Psicóloga (CRP 04/998877)">Camila Duarte — Luto e transições</option>
+              <option value="Jonas Ribeiro — Psicólogo (CRP 08/445566)">Jonas Ribeiro — Saúde no trabalho</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pac-vinculo">Tipo de Atendimento / Vínculo *</label>
+            <select id="pac-vinculo" name="Tipo_Vinculo">
+              <option value="Particular">Atendimento Particular</option>
+              <option value="Sindicato / Associação Parceira">Associado(a) de Sindicato / Associação Parceira</option>
+              <option value="Convênio Empresa (NR-1)">Colaborador(a) de Empresa Parceira (NR-1)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pac-instituicao">Nome do Sindicato, Associação ou Empresa (se aplicável)</label>
+          <input type="text" id="pac-instituicao" name="Entidade_ou_Empresa" placeholder="Ex: Sindicato de Piracicaba ou nome da empresa">
+        </div>
+
+        <div class="form-group">
+          <label for="pac-mensagem">O que você procura neste momento? (Opcional)</label>
+          <textarea id="pac-mensagem" name="Mensagem" rows="3" placeholder="Conte brevemente o que está buscando ou seus melhores horários para sessão online..."></textarea>
+        </div>
+
+        <button type="submit" id="btn-submit-paciente" class="btn-submit">Enviar solicitação confidencial</button>
+        <div id="feedback-paciente" class="feedback-msg">
+          Solicitação recebida com sigilo! Em breve entraremos em contato para orientar os próximos passos do seu atendimento online.
+        </div>
+        <div id="erro-paciente" class="feedback-erro">
+          Não foi possível enviar agora. Verifique sua conexão e tente novamente.
+        </div>
+      </form>
+    </div>
+
+    <div class="cvv-banner">
+      <strong>Atenção:</strong> A KHOROS Tecnologia não é um serviço de emergência. Se você está em crise, ligue para o <strong>CVV — 188</strong> (gratuito, 24 horas).
+    </div>
+  </main>
+
+  <footer>
+    KHOROS Tecnologia • Plataforma de Psicologia Online • Conformidade com a LGPD e diretrizes do CFP.
+  </footer>
+
+  <script>
+    function escolherProfissional(nomeProfissional) {
+      const select = document.getElementById('profissional-escolhido');
+      select.value = nomeProfissional;
+      document.getElementById('area-form-paciente').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function enviarFormulario(event) {
+      event.preventDefault();
+      const form = document.getElementById('form-paciente');
+      const btn = document.getElementById('btn-submit-paciente');
+      const okBox = document.getElementById('feedback-paciente');
+      const errBox = document.getElementById('erro-paciente');
+
+      okBox.style.display = 'none';
+      errBox.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Enviando com sigilo...';
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          okBox.style.display = 'block';
+          form.reset();
+        } else {
+          errBox.style.display = 'block';
+        }
+      } catch (error) {
+        errBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar solicitação confidencial';
+      }
+    }
+  </script>
+</body>
+</html>
